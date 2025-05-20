@@ -1,0 +1,40 @@
+[
+  {
+    "id": "homepage-refresh",
+    "name": "Homepage Refresh",
+    "status": "In Progress",
+    "scope": "Full Page Build",
+    "complexity": "High",
+    "goLiveDate": "2024-06-01",
+    "progress": 10,
+    "notes": "Waiting on image assets from design team"
+  },
+  {
+    "id": "email-module",
+    "name": "Email Module Update",
+    "status": "Upcoming",
+    "scope": "Module Update",
+    "complexity": "Medium",
+    "goLiveDate": "2024-06-10",
+    "progress": 20
+  },
+  {
+    "id": "checkout-flow",
+    "name": "Checkout Flow Optimization",
+    "status": "Blocked",
+    "scope": "Feature Enhancement",
+    "complexity": "High",
+    "goLiveDate": "2024-07-01",
+    "progress": 45,
+    "notes": "Pending payment gateway integration"
+  },
+  {
+    "id": "mobile-nav",
+    "name": "Mobile Navigation Redesign",
+    "status": "Done",
+    "scope": "UI Update",
+    "complexity": "Low",
+    "goLiveDate": "2024-05-15",
+    "progress": 100
+  }
+]

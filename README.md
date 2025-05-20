@@ -1,40 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📋 Dev Project Tracker — README
 
-## Getting Started
+A simple internal dashboard to help your project coordinators and creative team visualize what development work is in progress, upcoming, or complete. This tool provides clarity on scope, complexity, go-live dates, and your bandwidth.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Project Goals
+
+- Improve visibility of dev work for non-engineers
+- Provide a centralized view of project status, scope, and timing
+- Allow you (as the sole dev) to easily update data
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js (recommended for file-based routing and flexibility)
+- **Styling**: Tailwind CSS
+- **Data Source**: Static JSON file (`/data/projects.json`)
+- **Deployment**: Vercel / Netlify / IIS static deployment
+- **Auth**: None (read-only internal tool)
+
+---
+
+## 📁 Project Structure
+
+```
+project-tracker/
+├── public/
+├── data/
+│   └── projects.json
+├── src/
+│   ├── components/
+│   │   ├── ProjectCard.tsx
+│   │   ├── StatusBadge.tsx
+│   │   └── Layout.tsx
+│   ├── pages/
+│   │   ├── index.tsx            # Main dashboard
+│   │   └── project/[id].tsx     # (Optional) Detail view
+│   └── styles/
+│       └── globals.css
+├── README.md
+├── tailwind.config.js
+├── next.config.js
+└── package.json
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 📈 Data Format (`/data/projects.json`)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```json
+[
+  {
+    "id": "homepage-refresh",
+    "name": "Homepage Refresh",
+    "status": "In Progress",
+    "scope": "Full Page Build",
+    "complexity": "High",
+    "goLive": "2025-06-01",
+    "progress": 60,
+    "notes": "Waiting on image assets"
+  },
+  {
+    "id": "email-module",
+    "name": "Email Module Update",
+    "status": "Upcoming",
+    "scope": "Module Update",
+    "complexity": "Medium",
+    "goLive": "2025-06-10",
+    "progress": 20
+  }
+]
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧭 Roadmap
 
-## Learn More
+### ✅ Week 1: Project Setup
 
-To learn more about Next.js, take a look at the following resources:
+-
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### ✅ Week 2: Dashboard View
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-
 
-## Deploy on Vercel
+### ✅ Week 3: Data Wiring & Polishing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### 🟨 Optional Week 4: Enhancements
+
+- ***
+
+## 💡 Tips for Updating
+
+- Edit `data/projects.json` directly — no CMS or database needed
+- Deploy updated build manually if on IIS
+- Use clear and consistent status values: `Upcoming`, `In Progress`, `Blocked`, `Done`
+
+---
+
+## 👀 Example UI Elements
+
+- Status: Color-coded pill (e.g. 🔴 In Progress, 🟢 Done)
+- Progress: Horizontal bar with % complete
+- Complexity: Emoji or level (Low/Medium/High)
+- Notes: Optional line for blockers or status context
+
+---
+
+## 🧼 Maintenance Plan
+
+Since you're the only dev:
+
+- Keep data file simple and human-readable
+- Avoid over-engineering (no backend)
+- Consider batching updates weekly
+
+---
+
+## 🧪 Future Ideas
+
+- Markdown-based notes per project
+- Export to CSV
+- Email summary or digest version
+
+---
+
+Built by and for internal clarity 🙌

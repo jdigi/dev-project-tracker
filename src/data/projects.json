@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "name": "Website Redesign",
+    "status": "in-progress",
+    "goLiveDate": "2024-06-15",
+    "description": "Complete overhaul of the company website with modern design and improved user experience",
+    "scope": "Full website redesign including new content and features",
+    "complexity": "High",
+    "progress": 65,
+    "notes": "Need to finalize content strategy"
+  },
+  {
+    "id": "2",
+    "name": "Mobile App Development",
+    "status": "upcoming",
+    "goLiveDate": "2024-08-01",
+    "description": "Development of a new mobile application for iOS and Android platforms",
+    "scope": "Native mobile app development with backend integration",
+    "complexity": "High",
+    "progress": 0
+  },
+  {
+    "id": "3",
+    "name": "Database Migration",
+    "status": "blocked",
+    "goLiveDate": "2024-07-01",
+    "description": "Migration of legacy database to new cloud infrastructure",
+    "scope": "Data migration and system integration",
+    "complexity": "Medium",
+    "progress": 30,
+    "notes": "Waiting for vendor support"
+  },
+  {
+    "id": "4",
+    "name": "Security Audit",
+    "status": "done",
+    "goLiveDate": "2024-05-01",
+    "description": "Comprehensive security audit of all systems and applications",
+    "scope": "Security assessment and recommendations",
+    "complexity": "Medium",
+    "progress": 100
+  }
+]
