@@ -1,0 +1,153 @@
+.timeline {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  overflow-x: auto;
+  position: relative;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
+    min-width: 2000px;
+    z-index: 2;
+  }
+
+  &__date {
+    flex: 0 0 calc(100% / 90); // 3 months ≈ 90 days
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    padding: var(--space-1);
+    min-width: 30px;
+    border-right: 1px solid var(--color-neutral-200);
+    position: relative;
+
+    &:first-child {
+      border-left: 1px solid var(--color-neutral-200);
+    }
+
+    &--today {
+      color: var(--color-primary);
+      font-weight: 600;
+      background-color: var(--color-primary-300);
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 1rem;
+        background-color: var(--color-primary-300);
+      }
+    }
+  }
+
+  &__month {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  &__rows {
+    min-width: 2000px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-neutral-100);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__projectInfo {
+    width: 250px;
+    padding-right: var(--space-4);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  &__projectName {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: var(--text-base);
+  }
+
+  &__projectDate {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  &__projectBar {
+    flex-grow: 1;
+    position: relative;
+    height: 32px;
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-neutral-200);
+  }
+
+  &__project {
+    position: absolute;
+    height: 24px;
+    width: 120px; // Wider project markers
+    background-color: var(--color-primary-500);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    top: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      z-index: 1;
+    }
+
+    &--in-progress {
+      background-color: var(--color-primary-600);
+    }
+
+    &--upcoming {
+      background-color: var(--color-warning);
+    }
+
+    &--blocked {
+      background-color: var(--color-error);
+    }
+
+    &--done {
+      background-color: var(--color-success);
+    }
+  }
+}
