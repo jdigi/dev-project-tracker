@@ -16,17 +16,16 @@
     border-bottom: 1px solid var(--color-neutral-200);
     padding-bottom: var(--space-2);
     margin-bottom: var(--space-4);
-    min-width: 2000px;
+    width: calc(30px * var(--number-of-dates));
     z-index: 2;
   }
 
   &__date {
-    flex: 0 0 calc(100% / 90); // 3 months ≈ 90 days
+    flex: 0 0 30px;
     text-align: center;
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     padding: var(--space-1);
-    min-width: 30px;
     border-right: 1px solid var(--color-neutral-200);
     position: relative;
 
@@ -63,7 +62,7 @@
   }
 
   &__rows {
-    min-width: 2000px;
+    width: calc(30px * var(--number-of-dates));
   }
 
   &__row {
@@ -111,7 +110,7 @@
   &__project {
     position: absolute;
     height: 24px;
-    width: 120px; // Wider project markers
+    min-width: 30px; // Minimum width of one day
     background-color: var(--color-primary-500);
     border-radius: var(--radius-md);
     cursor: pointer;

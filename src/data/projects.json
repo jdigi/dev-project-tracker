@@ -50,11 +50,11 @@
     "name": "API Version Upgrade",
     "status": "done",
     "startDate": "2025-05-01",
-    "goLiveDate": "2025-05-15",
+    "goLiveDate": "2025-05-25",
     "description": "Upgrade to latest API version with improved security",
     "scope": "Backend Update",
     "complexity": "High",
-    "progress": 100
+    "progress": 95
   },
   {
     "id": "search-enhancement",

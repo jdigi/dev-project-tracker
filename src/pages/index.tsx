@@ -3,6 +3,7 @@ import { Layout } from "../components/Layout";
 import { ProjectCard } from "../components/ProjectCard";
 import { SummaryBar } from "../components/SummaryBar";
 import { TimelineStrip } from "../components/TimelineStrip";
+import { BandwidthForecast } from "../components/BandwidthForecast";
 import projects from "../data/projects.json";
 import styles from "../styles/pages/index.module.scss";
 
@@ -27,12 +28,13 @@ export default function Home() {
     }
   );
 
-  // Set today's date for testing
-  const today = new Date("2025-05-21");
+  // Set today's date for testing, explicitly in EST
+  const today = new Date("2025-05-22T12:02:00-04:00");
 
   return (
     <Layout>
       <div className={styles.container}>
+        <BandwidthForecast projects={sortedProjects} />
         <SummaryBar projects={sortedProjects} />
         <TimelineStrip
           projects={sortedProjects}
@@ -41,7 +43,7 @@ export default function Home() {
         />
         <div className={styles.grid}>
           {sortedProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} today={today} />
           ))}
         </div>
       </div>

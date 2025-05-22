@@ -26,25 +26,25 @@ export const TimelineStrip: React.FC<TimelineStripProps> = ({
   today = new Date(), // Default to actual today
 }) => {
   // Filter out upcoming projects
-  // TODO: consider add ALL projects with WF timelines
   const relevantProjects = projects.filter(
-    (project) => project.status !== "upcoming"
+    (project) => project.status !== "done"
   );
 
   // Calculate the date range based on project dates
-  const allDates = relevantProjects.flatMap((project) => [
-    project.startDate
-      ? new Date(project.startDate)
-      : new Date(project.goLiveDate),
-    new Date(project.goLiveDate),
-  ]);
+  const allDates = relevantProjects.flatMap((project) => {
+    const dates = [];
+    if (project.startDate) {
+      dates.push(new Date(project.startDate));
+    }
+    dates.push(new Date(project.goLiveDate));
+    return dates;
+  });
 
-  const earliestDate = new Date(
-    Math.min(...allDates.map((date) => date.getTime()))
-  );
-  const latestDate = new Date(
-    Math.max(...allDates.map((date) => date.getTime()))
-  );
+  // Sort dates to ensure we get the correct min/max
+  allDates.sort((a, b) => a.getTime() - b.getTime());
+
+  const earliestDate = allDates[0];
+  const latestDate = allDates[allDates.length - 1];
 
   // Add padding to the date range
   const startDate = new Date(earliestDate);
@@ -52,6 +52,11 @@ export const TimelineStrip: React.FC<TimelineStripProps> = ({
 
   const endDate = new Date(latestDate);
   endDate.setDate(endDate.getDate() + paddingDays);
+
+  // Calculate total days in the range
+  const totalDays = Math.ceil(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
 
   // Generate array of dates for the timeline
   const dates = [];
@@ -63,15 +68,27 @@ export const TimelineStrip: React.FC<TimelineStripProps> = ({
 
   // Helper function to check if a date is today
   const isToday = (date: Date) => {
+    // Convert both dates to EST
+    const todayEST = new Date(
+      today.toLocaleString("en-US", { timeZone: "America/New_York" })
+    );
+    const dateEST = new Date(
+      date.toLocaleString("en-US", { timeZone: "America/New_York" })
+    );
+
+    // Compare just the date parts
     return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
+      todayEST.getFullYear() === dateEST.getFullYear() &&
+      todayEST.getMonth() === dateEST.getMonth() &&
+      todayEST.getDate() === dateEST.getDate()
     );
   };
 
   return (
-    <div className={styles.timeline}>
+    <div
+      className={styles.timeline}
+      style={{ "--number-of-dates": dates.length } as React.CSSProperties}
+    >
       <div className={styles.timeline__header}>
         {dates.map((date, index) => (
           <div
@@ -101,18 +118,25 @@ export const TimelineStrip: React.FC<TimelineStripProps> = ({
             : new Date(project.goLiveDate);
           const goLiveDate = new Date(project.goLiveDate);
 
+          // Calculate days from start of timeline
           const startDaysFromStart = Math.floor(
             (projectStartDate.getTime() - startDate.getTime()) /
               (1000 * 60 * 60 * 24)
           );
 
+          // Calculate project duration in days
           const durationDays = Math.ceil(
             (goLiveDate.getTime() - projectStartDate.getTime()) /
               (1000 * 60 * 60 * 24)
           );
 
+          // Calculate percentages based on total days in range
+          const leftPercentage = (startDaysFromStart / totalDays) * 100;
+          const widthPercentage = (durationDays / totalDays) * 100;
+
           return (
             <div key={project.id} className={styles.timeline__row}>
+              {/* Temporarily commenting out project info
               <div className={styles.timeline__projectInfo}>
                 <span className={styles.timeline__projectName}>
                   {project.name}
@@ -122,14 +146,15 @@ export const TimelineStrip: React.FC<TimelineStripProps> = ({
                   {goLiveDate.toLocaleDateString()}
                 </span>
               </div>
+              */}
               <div className={styles.timeline__projectBar}>
                 <div
                   className={`${styles.timeline__project} ${
                     styles[`timeline__project--${project.status}`]
                   }`}
                   style={{
-                    left: `${(startDaysFromStart / dates.length) * 100}%`,
-                    width: `${(durationDays / dates.length) * 100}%`,
+                    left: `${leftPercentage}%`,
+                    width: `${widthPercentage}%`,
                   }}
                   title={`${
                     project.name
